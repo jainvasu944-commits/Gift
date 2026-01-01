@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Little Surprise ✨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px 22px;
+      border-radius: 16px;
+      max-width: 360px;
+      width: 90%;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    button {
+      margin-top: 22px;
+      padding: 10px 22px;
+      border: none;
+      border-radius: 25px;
+      background: #ffb703;
+      color: #000;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #ffd166;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .emoji {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="first">
+    <div class="emoji">🎁</div>
+    <h1>Hello!</h1>
+    <p>
+      This is just a small, simple surprise.<br>
+      Nothing fancy — just a warm smile 😊
+    </p>
+    <button onclick="showSurprise()">Tap to continue ✨</button>
+  </div>
+
+  <div class="card hidden" id="second">
+    <div class="emoji">🕯️</div>
+    <h1>You came again</h1>
+    <p>
+      And that honestly means a lot 🌼<br><br>
+      This page isn’t about a date or a reason.<br>
+      It’s just a quiet little place made with good intentions.<br><br>
+      Take care, keep smiling,<br>
+      and remember — you matter 💛
+    </p>
+  </div>
+
+  <script>
+    function showSurprise() {
+      document.getElementById("first").classList.add("hidden");
+      document.getElementById("second").classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
