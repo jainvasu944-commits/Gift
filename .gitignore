@@ -1,0 +1,152 @@
+// AUTO EXPIRE AFTER 20 MARCH – FINAL FRIEND VERSION
+(function () {
+  const today = new Date();
+  const expiryDate = new Date("2026-03-20T23:59:59");
+
+  if (today > expiryDate) {
+
+    document.body.innerHTML = `
+      <style>
+        body {
+          margin: 0;
+          overflow: hidden;
+          background: radial-gradient(circle at top, #1a1a2e, #0b0b0b);
+          font-family: 'Poppins', sans-serif;
+        }
+
+        /* soft breathing fade */
+        @keyframes breathe {
+          0% { opacity: 0.9; }
+          50% { opacity: 0.6; }
+          100% { opacity: 0.9; }
+        }
+
+        /* floating up */
+        @keyframes floatUp {
+          from { transform: translateY(110vh); }
+          to { transform: translateY(-10vh); }
+        }
+
+        /* slow star twinkle */
+        @keyframes twinkle {
+          0%,100% { opacity: 0.2; }
+          50% { opacity: 0.6; }
+        }
+
+        .expired {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          text-align: center;
+          color: #ffffff;
+          padding: 24px;
+          animation: breathe 7s ease-in-out infinite;
+          position: relative;
+          z-index: 2;
+        }
+
+        .expired h1 {
+          font-weight: 500;
+          letter-spacing: 0.5px;
+        }
+
+        .expired p {
+          margin: 6px 0;
+          color: #e0e0e0;
+        }
+
+        #countdown {
+          margin-top: 14px;
+          font-size: 16px;
+          color: #ffd6e7;
+        }
+
+        /* background layers */
+        .bg-layer {
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .cake {
+          position: absolute;
+          font-size: 34px;
+          opacity: 0.14;
+          animation: floatUp linear infinite;
+        }
+
+        .star {
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          background: #fff;
+          border-radius: 50%;
+          opacity: 0.3;
+          animation: twinkle 4s infinite;
+        }
+      </style>
+
+      <div class="bg-layer" id="cakes"></div>
+      <div class="bg-layer" id="stars"></div>
+
+      <div class="expired">
+        <h1>🕯️ You came again</h1>
+        <p>But your birthday has already passed.</p>
+        <p>Please visit again on your next birthday 🎂</p>
+        <p>Until then, take care and keep smiling 🌼</p>
+        <div id="countdown"></div>
+      </div>
+
+      <audio autoplay loop volume="0.25">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+      </audio>
+    `;
+
+    /* floating candle cakes */
+    const cakeLayer = document.getElementById("cakes");
+    for (let i = 0; i < 14; i++) {
+      const c = document.createElement("div");
+      c.className = "cake";
+      c.textContent = "🎂🕯️";
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.animationDuration = (12 + Math.random() * 12) + "s";
+      c.style.fontSize = (28 + Math.random() * 18) + "px";
+      cakeLayer.appendChild(c);
+    }
+
+    /* soft stars */
+    const starLayer = document.getElementById("stars");
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement("div");
+      s.className = "star";
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.top = Math.random() * 100 + "vh";
+      s.style.animationDelay = Math.random() * 5 + "s";
+      starLayer.appendChild(s);
+    }
+
+    /* countdown */
+    const nextBirthday = new Date("2027-03-20T00:00:00");
+    const cd = document.getElementById("countdown");
+
+    setInterval(() => {
+      const now = new Date();
+      const diff = nextBirthday - now;
+
+      if (diff <= 0) {
+        cd.innerHTML = "🎉 It's your birthday again!";
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      cd.innerHTML = `⏳ Next birthday in<br>${d} days ${h}h ${m}m ${s}s`;
+    }, 1000);
+  }
+})();
